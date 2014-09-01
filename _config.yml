@@ -1,5 +1,5 @@
 name: Shilcare's Blog
-markdown: rdiscount 
+markdown: kramdown
 highlighter: pygments
 url: 
 permalink: /:categories/:year/:month/:day/:title 
@@ -8,7 +8,7 @@ paginate: 8
 description:    
 intro: 
 logo:             logo.png
-disqus_shortname:
+disqus_shortname: shilcare
 
 production_url : http://shilcare.github.io
 
@@ -25,10 +25,19 @@ owner:
   google_plus: shilcare
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:
+google_analytics: UA-54353829-1
 google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
+
+
+# Settings for comments helper
+# Set 'provider' to the comment provider you want to use.
+# Set 'provider' to false to turn commenting off globally.
+#
+# comments :
+#  provider : disqus
+#  disqus :
+#    short_name : shilcare
 
 # Links to include in top navigation
 # For external links add external: true
