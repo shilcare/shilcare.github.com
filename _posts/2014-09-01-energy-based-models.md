@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Energy Based Model Notes
+comment: true
+categories: ml
 
 ---
 
