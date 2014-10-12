@@ -25,5 +25,5 @@ The partial derivative is in a form very like to that we see of the logistic uni
 
 $$\frac{\partial y_i}{\partial z_i} = y_i(1-y_i)$$
 
-Using a *cross entropy* cost function $$E=-t\log(y)-(1-t)\log(1-y)$$ will fix this problem because then $$\frac{dE}{dz}=y-t$$.
+Using a *cross entropy* cost function $$E=-t\log(y)-(1-t)\log(1-y)$$ will fix this problem because then $$\frac{dE}{dz}=y-t$$
 
