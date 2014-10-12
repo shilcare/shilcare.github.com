@@ -135,5 +135,41 @@ $$ P(A~is~a~derangement) \approx \frac{1}{\mathrm{e}} $$
 那么产生一个错排，平均需要多少次shuffle函数调用呢？设随机变量 $$X$$ 为产生一个错排shuffle函数被调用的次数，显然 $$X$$ 服从参数为 $$1/\mathrm{e}$$ 的几何分布，其数学期望为 $$\operatorname{E}[X] = \mathrm{e}$$，这表明平均每 2.7 次shuffle调用就会生成一个错位排列。这在实际的纸牌游戏中是可以接受的。
 
 ### 直接生成随机错排的算法
-Martínez(2008)等人提出了一种直接生成随机错排的算法，该算法在Sattolo's算法基础上加了一个标记数组，每个元素以一个适当的概率被标记，被标记的元素不会再被交换到其他的位置。在遍历的过程中，用 $$u$$ 记录剩下的未被标记的元素个数，元素被标记的概率为 $$(u-1)D{}_{u-2}/D{}_{u} $$。
+Martínez(2008)等人提出了一种直接生成随机错排的算法，该算法在Sattolo's算法基础上增加了一个标记数组，每个元素以一个精心设计的概率被标记，被标记的元素不会再被交换到其他的位置。在遍历的过程中，用 $$u$$ 记录剩下的未被标记的元素个数，元素被标记的概率为 $$(u-1)D{}_{u-2}/D{}_{u} $$。
 
+{% highlight python %}
+
+def randSelectUnmarked(i, marked):
+    """ choose one unmarked element from [0, i) at random. """
+    j = next(k for k in range(i) if not marked[k])
+    count = 1
+    for k in range(j + 1, i):
+        if not marked[k]:
+            count += 1
+            if random.randint(0, count - 1) == 0:
+                j = k
+    return j
+
+def randDerangement(n):
+    buff = range(n)
+    marked = [False] * n
+    i = n - 1
+    u = n
+    while u >= 2:
+        if not marked[i]:
+            j = randSelectUnmarked(i, marked)
+            buff[i], buff[j] = buff[j], buff[i]
+            a = D(u - 2)
+            b = D(u)
+            p = random.random()
+            # mark position j with probability (u-1)D(u-2) / D(u)
+            if p < (u - 1) * a / b:
+                marked[j] = True
+                u -= 1
+            u -= 1
+        i -= 1
+    return buff
+
+{% endhighlight %}
+
+算法的证明可以参考他们的这篇[paper](http://epubs.siam.org/doi/pdf/10.1137/1.9781611972986.7)。
