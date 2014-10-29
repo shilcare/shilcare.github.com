@@ -31,14 +31,6 @@ a img{ border:none; }
   Main Layout
 ----------------------------------------------------------------------------*/
 
-code.has-jax {
-    color: #333;
-    font: inherit;
-    font-size: 100%;
-    background: 0 0;
-    border: inherit
-}
-
 body {
   font-family: "Lato", Arial, sans-serif;
   font-size: 17px;
